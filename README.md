@@ -98,7 +98,7 @@ El correo de notificación incluye un renderizado simple de todos los datos del 
 
 ### Visor y descarga del PDF
 
-Al pulsar el botón de descarga de PDF, si el archivo existe se sirve en línea. En caso contrario se compone usando el mismo método que al enviar la notificación.
+Al pulsar el botón de descarga de PDF, si existe, el archivo se sirve en línea. En caso contrario se compone usando el mismo método que al enviar la notificación.
 
 ![Alt](./download_pdf.png "Visor y descarga del PDF")
 
