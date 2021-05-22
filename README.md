@@ -88,7 +88,7 @@ Acceder a la url http://localhost:8000 o http://127.0.0.1:8000
 
 La búsqueda se lanza automáticamente al alcanzar 3 caracteres.
 
-![Alt](./manage_view_sort.png "Gestor de solicitudes")
+![Alt](./manage_view_filter.png "Gestor de solicitudes")
 
 ### Bandeja de entrada de Mailtrap
 
