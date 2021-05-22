@@ -30,39 +30,41 @@ class InfoRequest extends Model
 
     public function savePdf(Array $values)
     {
-		$html[] = '
-		<html>
-		<head>
-		<style>
-			body {
-				font-family: sans-serif;
-				color: #333;
-			}
-			h1 {
-				color: darkgray;
-				border-bottom: 4px solid #ddd;
-			}
-			.box {
-				border:1px solid #ddd;
-				background-color:#eee;
-				padding: 1rem;
-			}
-		</style>
-		</head>
-		<body>
+		// $html[] = '
+		// <html>
+		// <head>
+		// <style>
+		// 	body {
+		// 		font-family: sans-serif;
+		// 		color: #333;
+		// 	}
+		// 	h1 {
+		// 		color: darkgray;
+		// 		border-bottom: 4px solid #ddd;
+		// 	}
+		// 	.box {
+		// 		border:1px solid #ddd;
+		// 		background-color:#eee;
+		// 		padding: 1rem;
+		// 	}
+		// </style>
+		// </head>
+		// <body>
 
-		<h1>Solicitud recibida</h1>
-		';
+		// <h1>Solicitud recibida</h1>
+		// ';
 
-		$html[] = '<div class="box">';
-		foreach($values as $key=>$value) {
-			$html[] = "<p><b>{$key}</b>:<br> {$value}</p>";
-		}
-		$html[] = '</div>';
-		$html[] = '</html>';
+		// $html[] = '<div class="box">';
+		// foreach($values as $key=>$value) {
+		// 	$html[] = "<p><b>{$key}</b>:<br> {$value}</p>";
+		// }
+		// $html[] = '</div>';
+		// $html[] = '</html>';
+
+		// $html = $this->composePdf($values);
 
 		$path = $this->builPdfPath($values);
-        $content = implode("\n", $html);
+        $content = $this->composePdf($values);
 		$pdf = App::make('dompdf.wrapper');
 		$done = $pdf->loadHTML($content)->save($path);
 

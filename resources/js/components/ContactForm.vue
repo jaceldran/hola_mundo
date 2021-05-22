@@ -49,7 +49,7 @@
 
 		</section>
 
-		<section v-if="!is_manage">
+		<section v-if="!is_reader">
 			<p class="my-8 text-center">
 				<input required type="checkbox" v-model="record.legal_terms" value="1" id="input_legal_terms">
 				<a class="underline text-indigo-500" href="javascript:alert('Enlace a documento legal')">Acepto los términos legales</a>
@@ -68,7 +68,6 @@
 			</p>
 		</section>
 		<section v-else>
-			<hr>
 			<label>
 				<input required type="checkbox" v-model="record.is_managed" value="1" id="input_is_managed">
 				Gestionado
@@ -93,11 +92,12 @@
 					contact_email: '',
 					message: '',
 					legal_terms: true,
+					is_managed: false,
 				},
 				button_text: 'Enviar',
 				button_disabled: false,
 				button_style: 'bg-gray-500',
-				is_edit: true,
+				is_reader: false,
 			}
 		},
         mounted() {
