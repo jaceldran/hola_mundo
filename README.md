@@ -42,32 +42,38 @@ php artisan serve
 
 Acceder a la url http://localhost:8000 o http://127.0.0.1:8000
 
-## Recursos
-
-Tailwind CSS
-
 ## Capturas de la aplicación
 
-Formulario de contacto
+### Home
+
+![Alt](./home.png "Home")
+
+### Formulario de contacto
 
 ![Alt](./contact_form.png "Formulario de contacto")
 
-Gestor de solicitudes
+### Gestor de solicitudes
 
 ![Alt](./manage_view.png "Gestor de solicitudes")
 
-Gestor de solicitudes, ordenar por cualquier columna
+### Gestor de solicitudes, ordenar por cualquier columna en sentido ascedente y descendente
 
 ![Alt](./manage_view_sort.png "Gestor de solicitudes")
 
-Gestor de solicitudes, filtrar por búsqueda
+### Gestor de solicitudes, filtrar por búsqueda
 
-![Alt](./manage_view_filter.png "Gestor de solicitudes")
+La búsqueda se lanza automáticamente al alcanzar 3 caracteres.
 
-Bandeja de entrada de Mailtrap
+![Alt](./manage_view_sort.png "Gestor de solicitudes")
+
+### Bandeja de entrada de Mailtrap
+
+El correo de notificación incluye un renderizado simple de todos los datos del formulario y un anexo en PDF con el mismo contenido.
 
 ![Alt](./mailtrap_inbox.png "Bandeja de entrada de Mailtrap")
 
-Visor y descarga del PDF
+### Visor y descarga del PDF
+
+Al pulsar el botón de descarga de PDF, si el archivo existe se sirve en línea. En caso contrario se compone usando el mismo método que al enviar la notificación.
 
 ![Alt](./download_pdf.png "Visor y descarga del PDF")
