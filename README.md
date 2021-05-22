@@ -4,17 +4,17 @@ Aplicación Laravel + Vue.
 
 ## Pasos de instalación
 
-1. Clonar o descargar y extraer el repositorio.
+1. Abrir terminal del SO.
 
-2. Abrir una terminal y entrar a la carpeta `holamundo`.
+2. Clonar o descargar y extraer el repositorio.
 
-3. Ejecutar los siguientes comandos en la terminal:
+3. Entrar a la carpeta `holamundo` o donde se hayan extraido los archivos de la aplicación.
+
+4. Ejecutar los siguientes comandos en la terminal:
 
     ```
     composer update
-
-    npm install
-
+    npm installphp
     npm run dev
     ```
 
@@ -24,7 +24,7 @@ Renombrar el archivo `.env.example` a `.env`, o copiarlo y ajustar según prefer
 
 ## Configuración de correo
 
-Configurar el driver de correo según preferencias. En este desarrollo se ha optado por usar mailtrap.
+Configurar el driver de correo según preferencias en el archivo `.env`. En este desarrollo se ha optado por usar **mailtrap**.
 
 ```
 MAIL_MAILER=smtp
@@ -50,7 +50,7 @@ DB_CONNECTION=sqlite
 # DB_PASSWORD=
 ```
 
-Una vez configurada la base de datos, efecutar las migraciones con los seeders
+Una vez configurada la base de datos, efecutar las migraciones con seeders.
 
 ```
 php artisan:migrate --seed
