@@ -20,11 +20,35 @@ Aplicación Laravel + Vue.
 
 ## Configuración de entorno
 
-Renombrar el archivo `.env.example` a `.env`, o copiarlo para configurar los envíos de email. En este desarrollo se ha optado por usar mailtrap.
+Renombrar el archivo `.env.example` a `.env`, o copiarlo y ajustar según preferencias.
+
+## Configuración de correo
+
+Configurar el driver de correo según preferencias. En este desarrollo se ha optado por usar mailtrap.
+
+```
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=username en mailtrap
+MAIL_PASSWORD=password en mailtrap
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=hello@world.com
+MAIL_FROM_NAME="${APP_NAME}"
+```
 
 ## Configuración de base de datos
 
-Para probar en local se puede usar el driver **sqlite**. Para ello crear un archivo vacío en la carpeta `database` llamado `database.sqlite`.
+Para probar en local se puede usar el driver **sqlite**. Para ello crear un archivo vacío en la carpeta `database` llamado `database.sqlite` y configurar las líneas correspondientes en el archivo `.env`
+
+```
+DB_CONNECTION=sqlite
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_DATABASE=laravel
+# DB_USERNAME=root
+# DB_PASSWORD=
+```
 
 Una vez configurada la base de datos, efecutar las migraciones con los seeders
 
@@ -77,3 +101,7 @@ El correo de notificación incluye un renderizado simple de todos los datos del 
 Al pulsar el botón de descarga de PDF, si el archivo existe se sirve en línea. En caso contrario se compone usando el mismo método que al enviar la notificación.
 
 ![Alt](./download_pdf.png "Visor y descarga del PDF")
+
+```
+
+```
