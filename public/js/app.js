@@ -2058,6 +2058,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2075,25 +2081,30 @@ __webpack_require__.r(__webpack_exports__);
       this.sort_order = sort_order;
       this.sort_direction = this.sort_direction === 'asc' ? 'desc' : 'asc', this.load();
     },
-    toggle_is_managed: function toggle_is_managed(record_id) {
-      alert("/api/requests/".concat(record_id));
-      axios.get("/api/requests/".concat(record_id)).then(function (response) {
-        console.log();
+    toggle_status: function toggle_status(record_id, is_managed) {
+      var _this = this;
+
+      var url = "/api/requests/".concat(record_id);
+      is_managed = is_managed === '1' ? '0' : '1';
+      axios.put("/api/requests/".concat(record_id), {
+        is_managed: is_managed
+      }).then(function (response) {
+        _this.load();
       })["catch"](function (error) {
         alert(error.message);
       });
     },
     load: function load() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get("/api/requests?order=".concat(this.sort_order, "&direction=").concat(this.sort_direction)).then(function (response) {
-        _this.requests = response.data;
+        _this2.requests = response.data;
       })["catch"](function (error) {
         console.log(error.message);
       });
     },
     search: function search(event) {
-      var _this2 = this;
+      var _this3 = this;
 
       console.log(this.query.length);
 
@@ -2104,7 +2115,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.query.length > 2) {
         axios.get("/api/requests?search=".concat(this.query)).then(function (response) {
-          _this2.requests = response.data;
+          _this3.requests = response.data;
         })["catch"](function (error) {
           alert(error.message);
         });
@@ -38361,13 +38372,23 @@ var render = function() {
             _vm._v(" "),
             _c("td", { staticClass: "border-b text-center text-sm" }, [
               _c(
-                "a",
+                "button",
                 {
                   staticClass:
                     "inline-block rounded border-blue-200 border py-1 w-12 text-center hover:bg-blue-100 hover:text-blue-500",
-                  attrs: { href: "javascript:alert('TODO: toggle el estado')" }
+                  on: {
+                    click: function($event) {
+                      return _vm.toggle_status(request.id, request.is_managed)
+                    }
+                  }
                 },
-                [_vm._v(_vm._s(request.is_managed === "1" ? "Sí" : "No"))]
+                [
+                  _vm._v(
+                    "\r\n\t\t\t\t\t" +
+                      _vm._s(request.is_managed === "1" ? "Sí" : "No") +
+                      "\r\n\t\t\t\t"
+                  )
+                ]
               )
             ]),
             _vm._v(" "),
@@ -38382,7 +38403,7 @@ var render = function() {
                       "inline-block rounded border-blue-200 border p-1 hover:bg-blue-100 hover:text-blue-500",
                     attrs: { target: "_blank", href: _vm.pdf(request.id) }
                   },
-                  [_vm._v("Descargar PDF")]
+                  [_vm._v("\r\n\t\t\t\t\tDescargar PDF\r\n\t\t\t\t")]
                 )
               ]
             )

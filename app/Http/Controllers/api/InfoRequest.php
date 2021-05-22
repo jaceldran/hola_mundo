@@ -14,7 +14,6 @@ class InfoRequest extends Controller
 	{
 		$model = new Model();
 
-
 		if (!empty($request->search)) {
 			return $model
 				->where('company_name', 'like', '%'.$request->search.'%')
@@ -60,17 +59,7 @@ class InfoRequest extends Controller
 		return Model::find($id);
 	}
 
-	// TODO: averiguar porqué esto no está funcionado
-	public function toggle_is_managed($id)
-	{
-		$record = Model::find($id);
-		$record->update([
-			'company_name' => 'AAAAAA', // prueba update otro atributo
-			'is_managed' => '1',
-		]);
 
-		return Model::find($id);
-	}
 
 	/**
 	 * Update the specified resource in storage.
@@ -82,15 +71,20 @@ class InfoRequest extends Controller
 	public function update(Request $request, $id)
 	{
 		$record = Model::find($id);
-		$record->company_name = $request->company_name;
-		$record->annual_income = $request->annual_income;
-		$record->contact_name = $request->contact_name;
-		$record->contact_phone = $request->contact_phone;
-		$record->contact_email = $request->contact_email;
-		$record->message = $request->message;
-		$record->legal_terms = $request->lega_terms;
-		$record->is_managed = $request->is_managed;
-		$record->save();
+		$values = $record->toArray();
+		$update_values = [];
+		foreach ($values as $key=>$value) {
+			if ($request->has($key)) {
+				$update_values[$key] = $request->input($key);
+			}
+		}
+
+		$done = $record->update($update_values);
+
+		return [
+			'done' => $done,
+			'update_values' => $update_values
+		];
 	}
 
 	/**

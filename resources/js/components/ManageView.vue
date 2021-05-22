@@ -63,11 +63,17 @@
 				{{ new Date(request.created_at).toLocaleString() }}
 			</td>
 			<td class="border-b text-center text-sm">
-				<a class="inline-block rounded border-blue-200 border py-1 w-12 text-center hover:bg-blue-100 hover:text-blue-500"
-					href="javascript:alert('TODO: toggle el estado')">{{request.is_managed==='1' ? 'Sí' : 'No' }}</a>
+				<button
+					class="inline-block rounded border-blue-200 border py-1 w-12 text-center hover:bg-blue-100 hover:text-blue-500"
+					@click="toggle_status(request.id, request.is_managed)">
+					{{request.is_managed==='1' ? 'Sí' : 'No' }}
+				</button>
 			</td>
 			<td class="border-b pr-2 whitespace-nowrap text-sm">
-				<a target="_blank" class="inline-block rounded border-blue-200 border p-1 hover:bg-blue-100 hover:text-blue-500" :href="pdf(request.id)">Descargar PDF</a>
+				<a target="_blank" class="inline-block rounded border-blue-200 border p-1 hover:bg-blue-100 hover:text-blue-500"
+					:href="pdf(request.id)">
+					Descargar PDF
+				</a>
 			</td>
 		</tr>
 		</tbody>
@@ -86,9 +92,11 @@
 				query: '',
 			}
 		},
+
         mounted() {
 			this.load();
         },
+
 		methods: {
 			toggle_sort(sort_order) {
 				this.sort_order = sort_order;
@@ -96,17 +104,24 @@
 				this.load();
 			},
 
-			toggle_is_managed(record_id) {
-				alert(`/api/requests/${record_id}`);
+			toggle_status(record_id, is_managed) {
+				const url = `/api/requests/${record_id}`;
 
-				axios.get(`/api/requests/${record_id}`)
+				is_managed = (is_managed==='1')
+					? '0'
+					: '1';
+
+				axios.put(`/api/requests/${record_id}`, {
+					is_managed
+				})
 				.then(response => {
-					console.log();
+					this.load();
 				})
 				.catch(error => {
 					alert(error.message);
 				});
 			},
+
 			load() {
 				axios.get(`/api/requests?order=${this.sort_order}&direction=${this.sort_direction}`)
 					.then(response => {
@@ -116,6 +131,7 @@
 						console.log(error.message)
 					});
 			},
+
 			search(event) {
 				console.log(this.query.length);
 				if (!this.query.length) {
@@ -131,6 +147,7 @@
 						})
 				}
 			},
+
 			pdf(id) {
 				return `/download/${id}`;
 			}
