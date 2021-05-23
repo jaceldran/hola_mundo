@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\InfoRequest as Model;
 use Illuminate\Support\Facades\App;
 
