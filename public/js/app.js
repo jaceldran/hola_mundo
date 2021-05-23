@@ -2067,7 +2067,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var url = "/api/requests/".concat(record_id);
       is_managed = is_managed === '1' ? '0' : '1';
-      axios.put("/api/requests/".concat(record_id), {
+      axios.patch("/api/requests/".concat(record_id), {
         is_managed: is_managed
       }).then(function (response) {
         _this.load();
@@ -2101,9 +2101,6 @@ __webpack_require__.r(__webpack_exports__);
           alert(error.message);
         });
       }
-    },
-    pdf: function pdf(id) {
-      return "/download/".concat(id);
     },
     sort_icon: function sort_icon(sort_order) {
       var icon = {
@@ -38433,24 +38430,17 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c(
-                "td",
-                {
-                  staticClass:
-                    "pr-2 whitespace-nowrap text-right text-sm p-2 --w-10"
-                },
-                [
-                  _c(
-                    "a",
-                    {
-                      staticClass:
-                        "inline-block rounded border-blue-200 border p-1 hover:bg-indigo-100 hover:text-indigo-500",
-                      attrs: { target: "_blank", href: _vm.pdf(request.id) }
-                    },
-                    [_vm._v("\r\n\t\t\t\t\tDescargar PDF\r\n\t\t\t\t")]
-                  )
-                ]
-              )
+              _c("td", { staticClass: "pr-2 text-right text-sm p-2 --w-10" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "inline-block rounded border-blue-200 border p-1 hover:bg-indigo-100 hover:text-indigo-500 whitespace-nowrap",
+                    attrs: { target: "_blank", href: "/download/" + request.id }
+                  },
+                  [_vm._v("\r\n\t\t\t\t\tDescargar PDF\r\n\t\t\t\t")]
+                )
+              ])
             ]
           )
         }),

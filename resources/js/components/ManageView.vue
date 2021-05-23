@@ -50,9 +50,9 @@
 					{{request.is_managed==='1' ? 'Sí' : 'No' }}
 				</button>
 			</td>
-			<td class="pr-2 whitespace-nowrap text-right text-sm p-2 --w-10">
-				<a target="_blank" class="inline-block rounded border-blue-200 border p-1 hover:bg-indigo-100 hover:text-indigo-500"
-					:href="pdf(request.id)">
+			<td class="pr-2 text-right text-sm p-2 --w-10">
+				<a target="_blank" class="inline-block rounded border-blue-200 border p-1 hover:bg-indigo-100 hover:text-indigo-500 whitespace-nowrap"
+					:href="`/download/${request.id}`">
 					Descargar PDF
 				</a>
 			</td>
@@ -92,7 +92,7 @@
 					? '0'
 					: '1';
 
-				axios.put(`/api/requests/${record_id}`, {
+				axios.patch(`/api/requests/${record_id}`, {
 					is_managed
 				})
 				.then(response => {
@@ -127,10 +127,6 @@
 							alert(error.message);
 						})
 				}
-			},
-
-			pdf(id) {
-				return `/download/${id}`;
 			},
 
 			sort_icon(sort_order) {
