@@ -28,7 +28,7 @@ class InfoRequestFactory extends Factory
             'contact_phone' => $this->faker->phoneNumber(),
             'contact_email' => $this->faker->email(),
             'message' => $this->faker->text(),
-            'legal_terms' => $this->faker->numberBetween(0, 1),
+            'legal_terms' => 1,
             'is_managed' => $this->faker->numberBetween(0, 1),
         ];
     }
