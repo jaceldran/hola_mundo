@@ -1,76 +1,57 @@
 <template>
 
 <div class="container  mx-auto py-2">
-	<table class="bg-white w-full">
-		<caption class="border-t border-b">
+		<div class="bg-white border-t border-b flex items-center justify-between">
 			<input type="search" v-model="query"
 				placeholder="Buscar..."
 				v-on:keyup="search"
-				class="w-full text-left p-4 --bg-gray-100 --border-4">
-		</caption>
+				class="w-full text-left p-4 flex-1 focus:outline-none">
+				<i class="fas fa-search px-4"></i>
+		</div>
+	<table class="bg-white w-full">
 		<thead class="">
-			<tr class="cursor-pointer whitespace-nowrap text-sm  text-left font-semibold">
-				<th class="p-2 border-b"  @click="toggle_sort('id')">
-					Id
-					<span v-if="sort_order==='id'" class="rounded-full bg-gray-100 inline-block w-6 v-6 text-center">
-						<b v-if="sort_direction==='asc'">&uarr;</b>
-						<b v-if="sort_direction==='desc'">&darr;</b>
-					</span>
+			<tr class="cursor-pointer whitespace-nowrap text-sm text-left font-semibold border-b">
+				<th class="p-2"  @click="toggle_sort('id')">
+					Id <i :class="sort_icon('id')"></i>
 				</th>
-				<th class="p-2 border-b" @click="toggle_sort('company_name')">
-					Empresa
-					<span v-if="sort_order==='company_name'" class="rounded-full bg-gray-100 inline-block w-6 v-6 text-center">
-						<b v-if="sort_direction==='asc'">&uarr;</b>
-						<b v-if="sort_direction==='desc'">&darr;</b>
-					</span>
+				<th class="p-2" @click="toggle_sort('company_name')">
+					Empresa <i :class="sort_icon('company_name')"></i>
 				</th>
-				<th class="p-2 border-b text-right" @click="toggle_sort('annual_income')">
-					Ingresos anuales
-					<span v-if="sort_order==='annual_income'" class="rounded-full bg-gray-100 inline-block w-6 v-6 text-center">
-						<b v-if="sort_direction==='asc'">&uarr;</b>
-						<b v-if="sort_direction==='desc'">&darr;</b>
-					</span>
+				<th class="p-2 text-right" @click="toggle_sort('annual_income')">
+					Ingresos anuales <i :class="sort_icon('annual_income')"></i>
 				</th>
-				<th class="p-2 border-b" @click="toggle_sort('contact_name')">
-					Contacto
-					<span v-if="sort_order==='contact_name'" class="rounded-full bg-gray-100 inline-block w-6 v-6 text-center">
-						<b v-if="sort_direction==='asc'">&uarr;</b>
-						<b v-if="sort_direction==='desc'">&darr;</b>
-					</span>
+				<th class="p-2" @click="toggle_sort('contact_name')">
+					Contacto <i :class="sort_icon('contact_name')"></i>
 				</th>
-				<th class="p-2 border-b" @click="toggle_sort('created_at')">
-					Fecha
-					<span v-if="sort_order==='created_at'" class="rounded-full bg-gray-100 inline-block w-6 v-6 text-center">
-						<b v-if="sort_direction==='asc'">&uarr;</b>
-						<b v-if="sort_direction==='desc'">&darr;</b>
-					</span>
+				<th class="p-2" @click="toggle_sort('created_at')">
+					Fecha <i :class="sort_icon('created_at')"></i>
 				</th>
-				<th class="p-2 border-b">Gestionado</th>
-				<th class="p-2 border-b"></th>
+				<th class="p-2">Gestionado</th>
+				<th class="p-2"></th>
 			</tr>
 		</thead>
 		<tbody>
-		<tr v-for="request in requests" :key="request.id">
-			<td class="p-2 border-b">{{request.id}}#</td>
-			<td class="p-2 border-b">{{request.company_name}}</td>
-			<td class="p-2 border-b text-right">{{request.annual_income}}</td>
-			<td class="p-2 border-b">
-				{{request.contact_name}}
+		<tr v-for="request in requests" :key="request.id" class="align-top border-b">
+			<td class="p-2">{{request.id}}#</td>
+			<td class="p-2">{{request.company_name}}</td>
+			<td class="p-2 text-right">{{request.annual_income}}</td>
+			<td class="p-2">
+				<div class="font-semibold">{{request.contact_name}}</div>
 				<div class="text-sm">{{request.contact_email}}</div>
 				<div class="text-sm">{{request.contact_phone}}</div>
 			</td>
-			<td class="p-2 border-b">
+			<td class="p-2">
 				{{ new Date(request.created_at).toLocaleString() }}
 			</td>
-			<td class="border-b text-center text-sm">
+			<td class="text-center text-sm p-2 w-10">
 				<button
-					class="inline-block rounded border-blue-200 border py-1 w-12 text-center hover:bg-blue-100 hover:text-blue-500"
+					class="inline-block rounded border-blue-200 border p-1 w-12 text-center hover:bg-indigo-100 hover:text-indigo-500"
 					@click="toggle_status(request.id, request.is_managed)">
 					{{request.is_managed==='1' ? 'Sí' : 'No' }}
 				</button>
 			</td>
-			<td class="border-b pr-2 whitespace-nowrap text-sm">
-				<a target="_blank" class="inline-block rounded border-blue-200 border p-1 hover:bg-blue-100 hover:text-blue-500"
+			<td class="pr-2 whitespace-nowrap text-right text-sm p-2 w-10">
+				<a target="_blank" class="inline-block rounded border-blue-200 border p-1 hover:bg-indigo-100 hover:text-indigo-500"
 					:href="pdf(request.id)">
 					Descargar PDF
 				</a>
@@ -150,7 +131,25 @@
 
 			pdf(id) {
 				return `/download/${id}`;
+			},
+
+			sort_icon(sort_order) {
+				const icon = {
+					sort:'fas fa-sort text-gray-300',
+					asc: 'fas fa-sort-alpha-up-alt text-gray-800',
+					desc:'fas fa-sort-alpha-down-alt text-gray-800',
+				}
+				if (this.sort_order!==sort_order) {
+					return icon.sort;
+				}
+
+				return icon[this.sort_direction];
 			}
-		}
+		},
+
     }
 </script>
+
+<style>
+	.isActive {background-color: yellow;}
+</style>

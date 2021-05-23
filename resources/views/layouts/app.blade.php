@@ -9,12 +9,15 @@
 
 	<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	@yield('style')
+
 	<script defer src="{{ mix('js/app.js') }}"></script>
 </head>
 
-</head>
 
-<body class="bg-indigo-50">
+<body class="bg-indigo-50 @yiel('body_class')">
 	<header class="bg-indigo-600">
 		<div class="container mx-auto py-4 flex justify-between items-center">
 			<a href="/" class=" text-white text-lg font-semibold uppercase">

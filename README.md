@@ -14,7 +14,9 @@ Aplicación Laravel + Vue.
 
     ```
     composer update
+
     npm installphp
+
     npm run dev
     ```
 
@@ -78,9 +80,11 @@ Acceder a la url http://localhost:8000 o http://127.0.0.1:8000
 
 ### Gestor de solicitudes
 
-![Alt](./manage_view.png "Gestor de solicitudes")
+Hacer click en los nombres de las columnas indicadas para ordenar en sentido ascendente y descedente.
 
-### Gestor de solicitudes, ordenar por cualquier columna en sentido ascedente y descendente
+Hacer click en cada botón de la columna **Gestionado** para alternar el estado de gestionado a Sí/No.
+
+Hacer click en cada enlace **Descargar PDF** para abrir en ventana aparte el PDF anexado a cada correo de respuesta de cada solicitud.
 
 ![Alt](./manage_view_sort.png "Gestor de solicitudes")
 
@@ -101,7 +105,3 @@ El correo de notificación incluye un renderizado simple de todos los datos del 
 Al pulsar el botón de descarga de PDF, si existe, el archivo se sirve en línea. En caso contrario se compone usando el mismo método que al enviar la notificación.
 
 ![Alt](./download_pdf.png "Visor y descarga del PDF")
-
-```
-
-```
