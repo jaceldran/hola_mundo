@@ -15,7 +15,7 @@ Aplicación Laravel + Vue.
     ```
     composer update
 
-    npm installphp
+    npm install
 
     npm run dev
     ```
