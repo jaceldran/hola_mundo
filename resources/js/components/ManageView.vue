@@ -1,16 +1,14 @@
 <template>
 
 <div class="container mx-auto py-2">
+	<div  class="block w-full bg-white border-t border-b flex items-center justify-between">
+		<input type="search" v-model="query"
+			placeholder="Buscar..."
+			v-on:keyup="search"
+			class="w-full text-left p-4 flex-1 focus:outline-none">
+			<i class="fas fa-search px-4"></i>
+	</div>
 	<table class="bg-white w-full">
-		<caption>
-		<div class="w-full bg-white border-t border-b flex items-center justify-between">
-			<input type="search" v-model="query"
-				placeholder="Buscar..."
-				v-on:keyup="search"
-				class="w-full text-left p-4 flex-1 focus:outline-none">
-				<i class="fas fa-search px-4"></i>
-		</div>
-		</caption>
 		<thead class="">
 			<tr class="cursor-pointer whitespace-nowrap text-sm text-left font-semibold border-b">
 				<th class="p-2"  @click="toggle_sort('id')">

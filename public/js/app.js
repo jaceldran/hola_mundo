@@ -38239,12 +38239,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container  mx-auto py-2" }, [
+  return _c("div", { staticClass: "container mx-auto py-2" }, [
     _c(
       "div",
       {
         staticClass:
-          "bg-white border-t border-b flex items-center justify-between"
+          "block w-full bg-white border-t border-b flex items-center justify-between"
       },
       [
         _c("input", {
@@ -38411,7 +38411,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("td", { staticClass: "text-center text-sm p-2 w-10" }, [
+              _c("td", { staticClass: "text-center text-sm p-2 --w-10" }, [
                 _c(
                   "button",
                   {
@@ -38437,7 +38437,7 @@ var render = function() {
                 "td",
                 {
                   staticClass:
-                    "pr-2 whitespace-nowrap text-right text-sm p-2 w-10"
+                    "pr-2 whitespace-nowrap text-right text-sm p-2 --w-10"
                 },
                 [
                   _c(
