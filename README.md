@@ -94,7 +94,7 @@ La búsqueda se lanza automáticamente al alcanzar 3 caracteres.
 
 ![Alt](./manage_view_filter.png "Gestor de solicitudes")
 
-### Bandeja de entrada de Mailtrap
+### Correo de notificación
 
 El correo de notificación incluye un renderizado simple de todos los datos del formulario y un anexo en PDF con el mismo contenido.
 
@@ -102,6 +102,6 @@ El correo de notificación incluye un renderizado simple de todos los datos del 
 
 ### Visor y descarga del PDF
 
-Al pulsar el botón de descarga de PDF, si existe, el archivo se sirve en línea. En caso contrario se compone usando el mismo método que al enviar la notificación.
+Si existe, se carga desde el archivo físico. Si no existe entonces se compone en ese momento usando el mismo método que al enviar la notificación. En ambos casos el contenido se visualiza en el navegador, permitiendo su descarga.
 
 ![Alt](./download_pdf.png "Visor y descarga del PDF")
