@@ -13,7 +13,7 @@ Aplicación Laravel + Vue.
 4. Ejecutar los siguientes comandos en la terminal:
 
     ```
-    composer update
+    composer install
 
     npm install
 
@@ -55,7 +55,7 @@ DB_CONNECTION=sqlite
 Una vez configurada la base de datos, efecutar las migraciones con seeders.
 
 ```
-php artisan:migrate --seed
+php artisan migrate --seed
 ```
 
 ## Ejecución

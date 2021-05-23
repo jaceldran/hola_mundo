@@ -1,14 +1,16 @@
 <template>
 
-<div class="container  mx-auto py-2">
-		<div class="bg-white border-t border-b flex items-center justify-between">
+<div class="container mx-auto py-2">
+	<table class="bg-white w-full">
+		<caption>
+		<div class="w-full bg-white border-t border-b flex items-center justify-between">
 			<input type="search" v-model="query"
 				placeholder="Buscar..."
 				v-on:keyup="search"
 				class="w-full text-left p-4 flex-1 focus:outline-none">
 				<i class="fas fa-search px-4"></i>
 		</div>
-	<table class="bg-white w-full">
+		</caption>
 		<thead class="">
 			<tr class="cursor-pointer whitespace-nowrap text-sm text-left font-semibold border-b">
 				<th class="p-2"  @click="toggle_sort('id')">
@@ -43,14 +45,14 @@
 			<td class="p-2">
 				{{ new Date(request.created_at).toLocaleString() }}
 			</td>
-			<td class="text-center text-sm p-2 w-10">
+			<td class="text-center text-sm p-2 --w-10">
 				<button
 					class="inline-block rounded border-blue-200 border p-1 w-12 text-center hover:bg-indigo-100 hover:text-indigo-500"
 					@click="toggle_status(request.id, request.is_managed)">
 					{{request.is_managed==='1' ? 'Sí' : 'No' }}
 				</button>
 			</td>
-			<td class="pr-2 whitespace-nowrap text-right text-sm p-2 w-10">
+			<td class="pr-2 whitespace-nowrap text-right text-sm p-2 --w-10">
 				<a target="_blank" class="inline-block rounded border-blue-200 border p-1 hover:bg-indigo-100 hover:text-indigo-500"
 					:href="pdf(request.id)">
 					Descargar PDF
